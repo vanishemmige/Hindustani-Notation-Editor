@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+  body {
+    font-family: Consolas, monospace;
+    padding: 12px;
+  }
+
+  h3 {
+    margin-bottom: 6px;
+  }
+
+  .group {
+    margin-bottom: 18px;
+  }
+
+  button {
+    font-family: Consolas, monospace;
+    font-size: 18px;
+    width: 38px;
+    height: 36px;
+    margin: 3px;
+    cursor: pointer;
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<h3>Lower Octave</h3>
+
+<div class="group">
+
+<button onclick="insert('Ṣ')">Ṣ</button>
+<button onclick="insert('Ṛ')">Ṛ</button>
+<button onclick="insert('G̣')">G̣</button>
+<button onclick="insert('Ṃ')">Ṃ</button>
+<button onclick="insert('Ṃ′')">Ṃ′</button>
+<button onclick="insert('P̣')">P̣</button>
+<button onclick="insert('Ḍ')">Ḍ</button>
+<button onclick="insert('Ṇ')">Ṇ</button>
+
+</div>
+
+
+<h3>Middle Octave</h3>
+
+<div class="group">
+
+<button onclick="insert('S')">S</button>
+<button onclick="insert('R')">R</button>
+<button onclick="insert('G')">G</button>
+<button onclick="insert('M')">M</button>
+<button onclick="insert('M′')">M′</button>
+<button onclick="insert('P')">P</button>
+<button onclick="insert('D')">D</button>
+<button onclick="insert('N')">N</button>
+
+</div>
+
+
+<h3>Higher Octave</h3>
+
+<div class="group">
+
+<button onclick="insert('Ṡ')">Ṡ</button>
+<button onclick="insert('Ṙ')">Ṙ</button>
+<button onclick="insert('Ġ')">Ġ</button>
+<button onclick="insert('Ṁ')">Ṁ</button>
+<button onclick="insert('Ṁ′')">Ṁ′</button>
+<button onclick="insert('Ṗ')">Ṗ</button>
+<button onclick="insert('Ḋ')">Ḋ</button>
+<button onclick="insert('Ṅ')">Ṅ</button>
+
+</div>
+
+
+<h3>Other</h3>
+
+<div class="group">
+
+<button onclick="insert('-')">-</button>
+<button onclick="insert('_')">_</button>
+
+</div>
+
+
+<script>
+
+function insert(swara) {
+
+  google.script.run.insertSwara(swara);
+
+}
+
+</script>
+
+</body>
+
+</html>

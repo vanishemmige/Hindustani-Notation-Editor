@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    padding: 18px;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
+
+  button {
+    width: 115px;
+    padding: 8px;
+    margin: 4px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  #status {
+    margin-top: 14px;
+    font-weight: bold;
+  }
+
+</style>
+</head>
+
+<body>
+
+<p>Select the taal:</p>
+
+<button onclick="createSong('TEENTAAL')">Teentaal</button>
+<button onclick="createSong('EKTAAL')">Ektaal</button>
+<button onclick="createSong('JHAPTAAL')">Jhaptaal</button>
+<button onclick="createSong('DADRA')">Dadra</button>
+
+<div id="status"></div>
+
+<script>
+
+let creating = false;
+
+function createSong(taalName) {
+
+  if (creating) {
+    return;
+  }
+
+  creating = true;
+
+  // Disable buttons immediately
+  const buttons = document.querySelectorAll("button");
+
+  buttons.forEach(function(button) {
+    button.disabled = true;
+  });
+
+  // Show feedback
+  const status = document.getElementById("status");
+  status.textContent = "Creating song...";
+
+  // Give the dialog time to display the message
+  setTimeout(function() {
+
+    google.script.run
+
+      .withSuccessHandler(function() {
+        status.textContent = "Done";
+        google.script.host.close();
+      })
+
+      .withFailureHandler(function(error) {
+
+        status.textContent = "Could not create song.";
+
+        creating = false;
+
+        buttons.forEach(function(button) {
+          button.disabled = false;
+        });
+
+      })
+
+      .createSongFromDialog(taalName);
+
+  }, 100);
+
+}
+
+</script>
+
+</body>
+</html>
