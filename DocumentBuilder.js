@@ -43,7 +43,6 @@ function createSong(taal) {
 
   const paragraph = element.asParagraph();
   const body = doc.getBody();
-
   let index = body.getChildIndex(paragraph) + 1;
 
   // -------------------------
@@ -55,7 +54,6 @@ function createSong(taal) {
   songTitle
     .setHeading(DocumentApp.ParagraphHeading.HEADING3)
     .setFontFamily(FONT);
-
 
   // -------------------------
   // SONG METADATA
@@ -70,16 +68,20 @@ function createSong(taal) {
 
   for (const line of metadata) {
 
-    const p = body.insertParagraph(index++, line);
+  const p = body.insertParagraph(index++, line);
 
-    p.setHeading(DocumentApp.ParagraphHeading.NORMAL)
-      .setFontFamily(FONT)
-      .setFontSize(11)
-      .setBold(false);
+  p.setHeading(DocumentApp.ParagraphHeading.NORMAL)
+    .setFontFamily(FONT)
+    .setFontSize(11)
+    .setBold(false);
+
+  const colonIndex = line.indexOf(":");
+
+  if (colonIndex >= 0) {
+    p.editAsText()
+      .setBold(0, colonIndex, true);
   }
-
-  body.insertParagraph(index++, "");
-
+}
 
   // -------------------------
   // ASTHAYI
@@ -92,9 +94,6 @@ function createSong(taal) {
     taal
   );
 
-  body.insertParagraph(index++, "");
-
-
   // -------------------------
   // ANTRA
   // -------------------------
@@ -106,7 +105,45 @@ function createSong(taal) {
     taal
   );
 
-  body.insertParagraph(index, "");
+  // -------------------------
+  // SUMMARY
+  // -------------------------
+
+  const summary = body.insertParagraph(index++, "Summary");
+
+  summary
+    .setHeading(DocumentApp.ParagraphHeading.NORMAL)
+    .setFontFamily(FONT)
+    .setFontSize(11)
+    .setBold(true);
+
+  // -------------------------
+  // MEANING
+  // -------------------------
+
+  const meaning = body.insertParagraph(index++, "Meaning");
+
+  meaning
+    .setHeading(DocumentApp.ParagraphHeading.NORMAL)
+    .setFontFamily(FONT)
+    .setFontSize(11)
+    .setBold(true);
+
+  const meaningAsthayi = body.insertParagraph(index++, "Asthayi:");
+
+  meaningAsthayi
+    .setHeading(DocumentApp.ParagraphHeading.NORMAL)
+    .setFontFamily(FONT)
+    .setFontSize(11)
+    .setBold(true);
+
+  const meaningAntra = body.insertParagraph(index++, "Antra:");
+
+  meaningAntra
+    .setHeading(DocumentApp.ParagraphHeading.NORMAL)
+    .setFontFamily(FONT)
+    .setFontSize(11)
+    .setBold(true);
 }
 
 
